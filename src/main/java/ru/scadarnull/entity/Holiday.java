@@ -1,7 +1,6 @@
 package ru.scadarnull.entity;
 
 public class Holiday {
-
     private final int day;
     private final int month;
 
