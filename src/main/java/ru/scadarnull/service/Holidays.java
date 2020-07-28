@@ -4,15 +4,13 @@ import ru.scadarnull.entity.Holiday;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Holidays {
-    private Set<Holiday> holidays;
+    private List<Holiday> holidays;
 
     public Holidays() {
-        holidays = new HashSet<>();
+        holidays = new ArrayList<>();
         init();
     }
 
