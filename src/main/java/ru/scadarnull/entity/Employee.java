@@ -17,4 +17,15 @@ public class Employee {
         this.salary = salary;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
 }
