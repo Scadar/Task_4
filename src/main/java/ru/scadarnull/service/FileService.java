@@ -17,14 +17,16 @@ public class FileService {
 
     private List<List<BigDecimal>> limits;
     private List<Group> groups;
+    private String file;
 
-    public FileService() {
+    public FileService(String file) {
+        this.file = file;
         limits = new ArrayList<>();
         groups = new ArrayList<>();
     }
 
     public void readFromFile(){
-        try(BufferedReader reader = new BufferedReader(new FileReader("info.txt")))
+        try(BufferedReader reader = new BufferedReader(new FileReader(file)))
         {
             String line = reader.readLine();
             while (line.trim().length() != 0){
