@@ -5,20 +5,14 @@ import java.time.LocalDate;
 
 public class Employee {
 
-    private String name;
 
     private LocalDate start;
 
     private BigDecimal salary;
 
-    public Employee(String name, LocalDate start, BigDecimal salary) {
-        this.name = name;
+    public Employee(LocalDate start, BigDecimal salary) {
         this.start = start;
         this.salary = salary;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public LocalDate getStart() {

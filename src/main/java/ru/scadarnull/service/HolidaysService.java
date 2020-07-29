@@ -6,10 +6,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Holidays {
+public class HolidaysService {
     private List<Holiday> holidays;
 
-    public Holidays() {
+    public HolidaysService() {
         holidays = new ArrayList<>();
         init();
     }

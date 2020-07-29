@@ -1,6 +1,6 @@
 package ru.scadarnull.entity;
 
-import ru.scadarnull.service.Holidays;
+import ru.scadarnull.service.HolidaysService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,7 +19,7 @@ public class Group {
     }
 
     public void calc(LocalDate localDate){
-        Holidays holidays = new Holidays();
+        HolidaysService holidays = new HolidaysService();
         System.out.println("Старт проекта " + localDate);
         for(int i = 0; i < limits.size(); ++i){
             BigDecimal limit = limits.get(i);
@@ -34,9 +34,10 @@ public class Group {
                 }
                 localDate = localDate.plusDays(1);
             }
-            System.out.println("Лимит " + i + " достигнут! Лимит = " + limit + " потрачено = " + sum +
-                    " конец = " + localDate.minusDays(1));
+            System.out.println("Лимит " + i + " достигнут! Лимит = " + limit + ", потрачено = " + sum +
+                    ", конец = " + localDate.minusDays(1));//Минус день нужен, потому что в цикле прибавляется 1 лишний
         }
+        System.out.println(" ");
     }
 
     public void calc(){
@@ -52,8 +53,11 @@ public class Group {
         throw new RuntimeException("Сотрудников нет");
     }
 
-    public void setLimits(BigDecimal... l) {
-        limits = new ArrayList<>();
-        limits.addAll(Arrays.asList(l));
+    public void setLimits(List<BigDecimal> limits) {
+        this.limits = limits;
+    }
+
+    public void add(Employee employee){
+        employees.add(employee);
     }
 }
