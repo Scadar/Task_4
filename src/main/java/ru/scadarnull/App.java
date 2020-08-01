@@ -2,6 +2,7 @@ package ru.scadarnull;
 
 import ru.scadarnull.entity.Group;
 import ru.scadarnull.service.FileService;
+import ru.scadarnull.service.HolidaysService;
 
 
 public class App 

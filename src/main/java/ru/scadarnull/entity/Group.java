@@ -33,7 +33,7 @@ public class Group {
             MonthlyStatistics monthlyStatistics = new MonthlyStatistics();
 
             while (limit.compareTo(sum) > 0){
-                if(!holidays.isHoliday(currentDay)){
+                if(!holidays.isHolidayLocal(currentDay)){
                     monthlyStatistics.incDay();
                     for(Employee employee : employees){
                         if(employee.getStart().compareTo(currentDay) <= 0){
