@@ -40,6 +40,9 @@ public class HolidaysService {
     }
 
     public boolean isHoliday(LocalDate date){
+        if(date.getYear() > 2025){
+            throw new RuntimeException("Год > 2025, вычисления неверны");
+        }
         return wwwHolidays.contains(date);
     }
 
