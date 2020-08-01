@@ -4,10 +4,11 @@ import ru.scadarnull.entity.Holiday;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 public class HolidaysService {
-    private List<Holiday> holidays;
+    private final List<Holiday> holidays;
 
     public HolidaysService() {
         holidays = new ArrayList<>();
@@ -15,13 +16,13 @@ public class HolidaysService {
     }
 
     private void init(){
-        addFewDays(Calendar.JANUARY + 1, 1, 8);//Новый год
-        holidays.add(new Holiday(Calendar.FEBRUARY + 1, 23));//День защитника отечаства
-        holidays.add(new Holiday(Calendar.MARCH + 1, 8));//Международный женский день
-        holidays.add(new Holiday(Calendar.MAY + 1, 1));//Праздник весны и труда
-        holidays.add(new Holiday(Calendar.MAY + 1, 9));//День победы
-        holidays.add(new Holiday(Calendar.JUNE + 1, 12));//День Росии
-        holidays.add(new Holiday(Calendar.NOVEMBER + 1, 4));//День народного единства
+        addFewDays(Month.JANUARY.getValue(), 1, 8);//Новый год
+        holidays.add(new Holiday(Month.FEBRUARY.getValue(), 23));//День защитника отечаства
+        holidays.add(new Holiday(Month.MAY.getValue(), 8));//Международный женский день
+        holidays.add(new Holiday(Month.MAY.getValue(), 1));//Праздник весны и труда
+        holidays.add(new Holiday(Month.MAY.getValue(), 9));//День победы
+        holidays.add(new Holiday(Month.JUNE.getValue(), 12));//День Росии
+        holidays.add(new Holiday(Month.NOVEMBER.getValue(), 4));//День народного единства
     }
 
     private void addFewDays(int month, int from, int to) {

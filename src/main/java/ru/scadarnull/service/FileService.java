@@ -4,20 +4,20 @@ import ru.scadarnull.entity.Employee;
 import ru.scadarnull.entity.Group;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FileService {
 
-    private List<List<BigDecimal>> limits;
-    private List<Group> groups;
-    private String file;
+    private final List<List<BigDecimal>> limits;
+    private final List<Group> groups;
+    private final String file;
 
     public FileService(String file) {
         this.file = file;
@@ -48,15 +48,21 @@ public class FileService {
     }
 
     private void addEmployee(String line, Group group, List<BigDecimal> limit) {
-        String[] fullEmployee = line.split(" ");
-        LocalDate localDate = LocalDate.parse(fullEmployee[0]);
-        BigDecimal bigDecimal = new BigDecimal(fullEmployee[1]);
-        group.add(new Employee(localDate, bigDecimal));
+        String[] fullEmployee = line.split(";");
+        String name = fullEmployee[0];
+        BigDecimal salary = new BigDecimal(fullEmployee[1]);
+        LocalDate start = LocalDate.parse(fullEmployee[2], DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        if(fullEmployee.length == 3){
+            group.add(new Employee(name, salary, start));
+        }else if(fullEmployee.length == 4){
+            LocalDate end = LocalDate.parse(fullEmployee[3], DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            group.add(new Employee(name, salary, start, end));
+        }
         group.setLimits(limit);
     }
 
     private void addLimits(String line) {
-        String[] fullLimits = line.split(" ");
+        String[] fullLimits = line.split(";");
         List<BigDecimal> temp = new ArrayList<>();
         limits.add(temp);
         for(String limit : fullLimits){
