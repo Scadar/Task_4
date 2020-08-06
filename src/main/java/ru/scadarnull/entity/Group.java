@@ -27,20 +27,17 @@ public class Group {
         System.out.println("Старт проекта " + currentDay.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
         for(int i = 0; i < limits.size(); ++i){
-
             BigDecimal limit = limits.get(i);
             BigDecimal sum = new BigDecimal(String.valueOf(remainder));
             MonthlyStatistics monthlyStatistics = new MonthlyStatistics();
 
             while (limit.compareTo(sum) > 0){
-                if(!holidays.isHolidayLocal(currentDay)){
+                if(!holidays.isHolidayWWW(currentDay)){
                     monthlyStatistics.incDay();
                     for(Employee employee : employees){
                         if(employee.getStart().compareTo(currentDay) <= 0){
-                            if(employee.getEnd() != null){
-                                if(employee.getEnd().compareTo(currentDay) <= 0){
-                                    continue;
-                                }
+                            if(employee.getEnd() != null && employee.getEnd().compareTo(currentDay) <= 0){
+                                continue;
                             }
                             sum = sum.add(employee.getSalary());
                             monthlyStatistics.addMoney(employee.getSalary());
@@ -83,7 +80,7 @@ public class Group {
 
     private LocalDate getFirstWorkDay(){
         Optional<Employee> resultEmployee = employees.stream().min(Comparator.comparing(Employee::getStart));
-            if(resultEmployee.isPresent()){
+        if(resultEmployee.isPresent()){
             Employee employee = resultEmployee.get();
             return employee.getStart();
         }

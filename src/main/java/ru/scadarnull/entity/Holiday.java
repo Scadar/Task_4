@@ -11,22 +11,6 @@ public class Holiday {
         this.day = day;
     }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
     public boolean isEqual(LocalDate date){
         return date.getDayOfMonth() == day && date.getMonthValue() == month;
     }

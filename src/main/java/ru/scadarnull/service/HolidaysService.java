@@ -22,7 +22,7 @@ public class HolidaysService {
         this.wwwHolidays = new HashSet<>();
         this.holidays = new HashSet<>();
         this.russianHoliday = new ArrayList<>();
-        //initWWW();
+        initWWW();
         init();
     }
 
@@ -36,7 +36,7 @@ public class HolidaysService {
         russianHoliday.add(new Holiday(Month.MAY.getValue(), 9));//День победы
         russianHoliday.add(new Holiday(Month.JUNE.getValue(), 12));//День Росии
         russianHoliday.add(new Holiday(Month.NOVEMBER.getValue(), 4));//День народного единства
-        holidays2020();
+        //holidays2020();
     }
 
     private void holidays2020() {
@@ -72,7 +72,6 @@ public class HolidaysService {
                     holidays.add(date.plusDays(1));
                 }
                 return true;
-
             }
         }
         if(date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY){
@@ -105,7 +104,7 @@ public class HolidaysService {
 
     public boolean isHolidayWWW(LocalDate date){
         if(date.getYear() > 2025){
-            throw new RuntimeException("Год > 2025, вычисления неверны");
+            return isHolidayLocal(date);
         }
         return wwwHolidays.contains(date);
     }
